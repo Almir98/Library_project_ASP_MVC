@@ -1,0 +1,40 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+}
+
+@model Library_project.ViewModels.Catalog.AssetIndexModel;
+
+<div id="assets">
+    <h3>Library Catalog</h3>
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th>Image</th>
+                <th>Title</th>
+                <th>Author / Director</th>
+                <th>Dewec Call Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var i in Model.ListAssets)
+            {
+            <tr class="assetRow">
+                <td class="">
+                    <img src="@i.imageUrl" class="imageCell" />
+                </td>
+                <td class="">@i.title</td>
+                <td class="">@i.authorOrDirector</td>
+                <td class="">@i.deweyCallNumber</td>
+            </tr>
+            }
+        </tbody>
+    </table> 
+</div>
+
+
+
+
+
+
+

@@ -8,6 +8,7 @@ namespace LibraryData
     {
         public LibraryContext(DbContextOptions options) : base(options) { }
 
+
         public DbSet<Patron> Patron { get; set; }
         public DbSet<Book> Books { get; set; }
         public DbSet<BranchHours> BranchHours { get; set; }
