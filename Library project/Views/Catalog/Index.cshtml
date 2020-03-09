@@ -21,7 +21,11 @@
             {
             <tr class="assetRow">
                 <td class="">
-                    <img src="@i.imageUrl" class="imageCell" />
+
+                    <a href="/Catalog/Detail?id=@i.ID">
+                        <img src="@i.imageUrl" class="imageCell" />
+                    </a>
+
                 </td>
                 <td class="">@i.title</td>
                 <td class="">@i.authorOrDirector</td>
@@ -32,6 +36,15 @@
     </table> 
 </div>
 
+<style>
+
+    .imageCell{
+        height:200px;
+        width:200px;
+    }
+
+
+</style>
 
 
 

@@ -1,0 +1,151 @@
+﻿
+@{
+    ViewData["Title"] = "Detail";
+}
+
+<h1>Details</h1>
+
+@model Library_project.ViewModels.Catalog.Catalog_DetailVM
+
+
+<div class="container">
+    <div class="page-header clearfix detailHeading">
+        <h2 class="text-muted">View Library Item</h2>
+    </div>
+</div>
+
+<div class="jumbotron">
+    <div class="row">
+        <div class="col-md-4">
+            <div id="neki">
+                <img style="height:300px; width:320px" class="detailImage" src="@Model.imageUrl" />
+            </div>
+        </div>
+    </div>
+
+    <div id="neki2" class="col-md-4">
+        <p class="itemTitle">@Model.title</p>
+        <p class="itemAuthor">@Model.authorOrDirector</p>
+        <p class="itemStatus">@Model.status</p>
+        <p class="itemType">@Model.type</p>
+        <p class="itemLocation">@Model.currentLocation</p>
+
+        <!-- ako je zauzeta-->
+
+        @if (Model.status == "Lost")
+        {
+            <p>This item has been lost</p>
+            <a class="btn btn-danger" asp-controller="Catalog" asp-action="MarkFound" asp-route-id="@Model.ID">Mark Item Found</a>
+        }
+
+        @if (Model.status == "Checked out")
+        {
+            <p id="itemPatron">Checked out by:@Model.patronName</p>
+
+            <a class="btn btn-success" asp-controller="Catalog" asp-action="ChecIn" asp-route-id="@Model.ID">Check In</a>
+
+            <a class="btn btn-warning" asp-controller="Catalog" asp-action="Hold" asp-route-id="@Model.ID">Place Hold</a>
+        }
+
+        @if (Model.status == "Available")
+        {
+            <a class="btn btn-primary" asp-controller="Catalog" asp-action="CheckOut" asp-route-id="@Model.ID">Check out</a>
+        }
+    </div>
+
+    <div class="col-md-4 detailInfo">
+        <table>
+            <tr>
+                <td class="">ISBN</td>
+                <td class="">@Model.ISBN</td>
+            </tr>
+
+            <tr>
+                <td class="">Call Number </td>
+                <td class="">@Model.deweyCallNumber</td>
+            </tr>
+
+            <tr>
+                <td class="">Cost</td>
+                <td class="">@Model.cost</td>
+            </tr>
+
+        </table>
+
+    </div>
+</div>
+
+
+<div class="row">
+    <div class="col-lg-6">
+        <h4>Checkout History</h4>
+        <table class="table table-bordered table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>Date Loaned</th>
+                    <th>Date Returned</th>
+                    <th>Card Id</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var checkout in Model.CheckOutHistory)
+                {
+                    <tr>
+                        <td>
+                            @checkout.CheckedOut
+                        </td>
+                        <td>
+                            @checkout.CheckedIn
+                        </td>
+                        <td>
+                            @checkout.LibraryCard.ID
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+    <div class="col-lg-6">
+        <h4>Current Holds</h4>
+        <table class="table table-bordered table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>Hold Placed</th>
+                    <th>Patron</th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var hold in Model.CurrenHolds)
+                {
+                    <tr>
+                        <td>
+                            @hold.HoldPlaced
+                        </td>
+                        <td>
+                            @hold.PatronName
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+
+
+<style>
+
+    /*#neki2 {
+        float: right;
+    }
+
+    .row {
+        height: 320px;
+        width: 290px;
+        float: left;
+    }
+
+    .col-md-4 detailInfo {
+        float: left;
+    }*/
+</style>
