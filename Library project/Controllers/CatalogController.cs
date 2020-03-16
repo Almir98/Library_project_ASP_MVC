@@ -67,7 +67,7 @@ namespace Library_project.Controllers
                 imageUrl=asset.ImageUrl,
 
                 CheckOutHistory=_checkOutInterface.GetCheckOutHistorie(id),
-                LatestCheckOut=_checkOutInterface.GetLatestCheckOut(id),
+                //LatestCheckOut=_checkOutInterface.GetLatestCheckOut(id),
                 patronName=_checkOutInterface.GetCurrentCheckOutPatron(id),
                 CurrenHolds=currentHolds
             };
@@ -88,7 +88,6 @@ namespace Library_project.Controllers
             };
             return View(model);
         }
-
 
         public IActionResult MarkLost(int assetid)
         {

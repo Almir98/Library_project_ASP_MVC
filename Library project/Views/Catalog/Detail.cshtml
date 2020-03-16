@@ -49,7 +49,7 @@
 
         @if (Model.status == "Available")
         {
-            <a class="btn btn-primary" asp-controller="Catalog" asp-action="CheckOut" asp-route-id="@Model.ID">Check out</a>
+            <a class="btn btn-primary" href="/Catalog/CheckOut?id=@Model.ID">Check out</a>
         }
     </div>
 

@@ -21,7 +21,7 @@ namespace Library_project.ViewModels.Catalog
         public string imageUrl { get; set; }
         public string patronName { get; set; }
         
-        public CheckOut LatestCheckOut { get; set; }
+        //public CheckOut LatestCheckOut { get; set; }
 
         public IEnumerable<CheckOutHistory> CheckOutHistory { get; set; }
         public IEnumerable<AssetHoldModel> CurrenHolds { get; set; }
